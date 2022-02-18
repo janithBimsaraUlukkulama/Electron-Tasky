@@ -15,9 +15,13 @@ app.on('ready', () => {
         resizable: false,
         show: false
     });
+
+    // hide app icon from task menu
+    process.platform === 'win32' ? mainWindow.setSkipTaskbar(true) : app.dock.hide();
+
     mainWindow.loadURL(`file://${__dirname}/src/index.html`);
     // hide app when un focus
-    mainWindow.on('blur',()=>{
+    mainWindow.on('blur', () => {
         mainWindow.hide();
     });
 
